@@ -61,21 +61,15 @@ function makeUsersArray() {
   }
   
   
-  function makeExpectedJournal(users, journal) {
+  function makeExpectedJournal(users, journals) {
     const author = users
-      .find(user => user.id === journal.author_id)
+      .find(user => user.id === journals.author_id)
   
     return {
-      id: journal.id,
-      content: journal.content,
-      title: article.title.toISOString(),
-      author: {
-        id: author.id,
-        username: author.username,
-        full_name: author.full_name,
-        nickname: author.nickname,
-        date_modified: author.date_modified || null,
-      },
+      id: journals.id,
+      content: journals.content,
+      title: journals.title,
+      author_id: author,
     }
   }
   
@@ -107,34 +101,34 @@ function makeUsersArray() {
     return db.transaction(trx =>
       trx.raw(
         `TRUNCATE
-          inside_voices_journals,
-          inside_voices_users,
+          journals,
+          users
         `
       )
       .then(() =>
         Promise.all([
-          trx.raw(`ALTER SEQUENCE inside_voices_journals_id_seq minvalue 0 START WITH 1`),
-          trx.raw(`ALTER SEQUENCE inside_voices_users_id_seq minvalue 0 START WITH 1`),
-          trx.raw(`SELECT setval('inside_voices_journals_id_seq', 0)`),
-          trx.raw(`SELECT setval('inside_voices_users_id_seq', 0)`),
+          trx.raw(`ALTER SEQUENCE journals_id_seq minvalue 0 START WITH 1`),
+          trx.raw(`ALTER SEQUENCE users_id_seq minvalue 0 START WITH 1`),
+          trx.raw(`SELECT setval('journals_id_seq', 0)`),
+          trx.raw(`SELECT setval('users_id_seq', 0)`),
         ])
       )
     )
   }
   
-  function seedJournalsTables(db, users, articles) {
+  function seedJournalsTables(db, users, journals) {
     // use a transaction to group the queries and auto rollback on any failure
     return db.transaction(async trx => {
-      await trx.into('inside_voices_users').insert(users)
-      await trx.into('inside_voices_journals').insert(journals)
+      await trx.into('users').insert(users)
+      await trx.into('journals').insert(journals)
       // update the auto sequence to match the forced id values
       await Promise.all([
         trx.raw(
-          `SELECT setval('inside_voices_users_id_seq', ?)`,
+          `SELECT setval('users_id_seq', ?)`,
           [users[users.length - 1].id],
         ),
         trx.raw(
-          `SELECT setval('inside_voices_journals_id_seq', ?)`,
+          `SELECT setval('journals_id_seq', ?)`,
           [journals[journals.length - 1].id],
         ),
       ])
@@ -143,11 +137,11 @@ function makeUsersArray() {
   
   function seedMaliciousJournal(db, user, journal) {
     return db
-      .into('inside_voices_users')
+      .into('users')
       .insert([user])
       .then(() =>
         db
-          .into('inside_voices_journals')
+          .into('journals')
           .insert([journal])
       )
   }

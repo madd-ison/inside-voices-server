@@ -1,0 +1,4 @@
+TRUNCATE
+    journals,
+    users
+RESTART IDENTITY CASCADE;
