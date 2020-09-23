@@ -1,6 +1,6 @@
 const JournalsService = {
-    getAllJournals() {
-        return Promise.resolve('all journals!')
+    getAllJournals(knex) {
+        return knex.select('*').from('journals')
     }
 
     // getAllJournals(knex) {
