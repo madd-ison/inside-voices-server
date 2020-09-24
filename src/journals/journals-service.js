@@ -20,26 +20,12 @@ const JournalsService = {
         .where({id})
         .delete()
     },
-    updateJournal(knex, journal_id, journal) {
+    updateJournal(knex, id, journal) {
         return knex
         .from('journals')
-        .where('id', journal_id)
+        .where('id', id)
         .update(journal)
     },
-    serializeJournal(journal) {
-        const { user } = journal
-        return {
-          id: journal.id,
-          title: xss(journal.title),
-          content: xss(journal.content),
-          author_id: {
-            id: user.id,
-            username: user.username,
-            full_name: user.full_name,
-            nickname: user.nickname,
-          }
-        }
-    }
 }   
 
 module.exports = JournalsService

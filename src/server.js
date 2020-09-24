@@ -1,5 +1,4 @@
 require('dotenv').config()
-const journalsService = require('./journals/journals-service')
 
 const app = require('./app')
 const { PORT, DATABASE_URL } = require('./config')

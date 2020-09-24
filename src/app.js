@@ -4,8 +4,8 @@ const morgan = require('morgan')
 const cors = require('cors')
 const helmet = require('helmet')
 const { NODE_ENV } = require('./config')
-const usersRouter = require('./users/users-router')
-const JournalsService = require('./journals/journals-service')
+const usersRouter = require('./auth/users-router')
+const journalsRouter = require('./journals/journals-router')
 
 const app = express()
 
@@ -18,39 +18,11 @@ app.use(helmet())
 app.use(cors())
 
 app.use('/api/users', usersRouter)
+app.use(journalsRouter)
 
 app.get('/', (req, res) => {
    res.send('Boilerplate!')
  })
-
- app.get('/api/journal', (req, res, next) => {
-  const knexInstance = req.app.get('db')
-  JournalsService.getAllJournals(knexInstance)
-    .then(journals => {
-      res.json(journals)
-    })
-    .catch(next)
-})
-
-// app.post('/api/users', (req, res) => {
-
-// })
-
-// app.get('/api/journal', (req, res) => {
-//   res.send('journals')
-// })
-
-// app.get('/api/journal/:journalId', (req, res) => {
-
-// })
-
-// app.post('/api/journal', (req, res) => {
-
-// })
-
-// app.delete('/api/journal/:journalId', (req, res) => {
-
-// })
 
 app.use(function errorHandler(error, req, res, next) {
     let response

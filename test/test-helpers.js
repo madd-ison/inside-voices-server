@@ -36,25 +36,25 @@ function makeUsersArray() {
       {
         id: 1,
         author_id: users[0].id,
-        title: new Date('2029-01-22T16:28:32.615Z'),
+        title: '2029-01-22T16:28:32.615Z',
         content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus consequuntur deserunt commodi, nobis qui inventore corrupti iusto aliquid debitis unde non.Adipisci, pariatur.Molestiae, libero esse hic adipisci autem neque ?',
       },
       {
         id: 2,
         author_id: users[1].id,
-        title: new Date('2029-01-22T16:28:32.615Z'),
+        title: '2029-01-22T16:28:32.615Z',
         content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus consequuntur deserunt commodi, nobis qui inventore corrupti iusto aliquid debitis unde non.Adipisci, pariatur.Molestiae, libero esse hic adipisci autem neque ?',
       },
       {
         id: 3,
         author_id: users[2].id,
-        title: new Date('2029-01-22T16:28:32.615Z'),
+        title: '2029-01-22T16:28:32.615Z',
         content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus consequuntur deserunt commodi, nobis qui inventore corrupti iusto aliquid debitis unde non.Adipisci, pariatur.Molestiae, libero esse hic adipisci autem neque ?',
       },
       {
         id: 4,
         author_id: users[3].id,
-        title: new Date('2029-01-22T16:28:32.615Z'),
+        title: '2029-01-22T16:28:32.615Z',
         content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus consequuntur deserunt commodi, nobis qui inventore corrupti iusto aliquid debitis unde non.Adipisci, pariatur.Molestiae, libero esse hic adipisci autem neque ?',
       },
     ]
