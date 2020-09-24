@@ -5,6 +5,7 @@ const cors = require('cors')
 const helmet = require('helmet')
 const { NODE_ENV } = require('./config')
 const usersRouter = require('./users/users-router')
+const JournalsService = require('./journals/journals-service')
 
 const app = express()
 
@@ -21,28 +22,35 @@ app.use('/api/users', usersRouter)
 app.get('/', (req, res) => {
    res.send('Boilerplate!')
  })
-app.get('/api/*', (req, res) => {
-   res.json({ok: true});
- });
 
-app.get('/api/journal', (req, res) => {
-
+ app.get('/api/journal', (req, res, next) => {
+  const knexInstance = req.app.get('db')
+  JournalsService.getAllJournals(knexInstance)
+    .then(journals => {
+      res.json(journals)
+    })
+    .catch(next)
 })
 
-app.post('/api/journal', (req, res) => {
- const {content} = req.body
- if (!content) {
-   return res
-     .status(400)
-     .send('Cannot submit blank entry');
- }
-})
+// app.post('/api/users', (req, res) => {
 
-app.delete('api/journal/:journalId', (req, res) => {
- const {journalId} = req.params
- res.send(`Journal ${journalId} deleted.`);
-});
+// })
 
+// app.get('/api/journal', (req, res) => {
+//   res.send('journals')
+// })
+
+// app.get('/api/journal/:journalId', (req, res) => {
+
+// })
+
+// app.post('/api/journal', (req, res) => {
+
+// })
+
+// app.delete('/api/journal/:journalId', (req, res) => {
+
+// })
 
 app.use(function errorHandler(error, req, res, next) {
     let response
