@@ -20,11 +20,11 @@ const JournalsService = {
         .where({id})
         .delete()
     },
-    updateJournal(knex, id, journal) {
+    updateJournal(knex, id, content) {
         return knex
         .from('journals')
         .where('id', id)
-        .update(journal)
+        .update(content)
     },
 }   
 
