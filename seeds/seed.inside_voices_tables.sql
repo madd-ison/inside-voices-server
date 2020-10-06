@@ -5,9 +5,9 @@ TRUNCATE
     users
 RESTART IDENTITY CASCADE;
 
-INSERT INTO users (username, full_name, password, nickname)
+INSERT INTO users (username, password)
 VALUES
-    ('maddison', 'Maddison M', 'password1', null);
+    ('maddison', 'password1');
 
 INSERT INTO journals (author_id, content)
 VALUES

@@ -3,4 +3,3 @@ CREATE TABLE journals (
     title DATE NOT NULL DEFAULT CURRENT_DATE,
     content TEXT
 );
-

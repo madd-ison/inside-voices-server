@@ -9,3 +9,9 @@
 {"message":"journal with id 6 created","level":"info"}
 {"message":"journal 6 deleted","level":"info"}
 {"message":"journal 5 deleted","level":"info"}
+{"message":"journal 2 deleted","level":"info"}
+{"message":"journal with id 7 created","level":"info"}
+{"message":"content is missing","level":"error"}
+{"message":"journal with id 2 created","level":"info"}
+{"message":"journal with id 3 created","level":"info"}
+{"message":"journal 3 deleted","level":"info"}
