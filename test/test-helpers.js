@@ -145,6 +145,11 @@ function makeUsersArray() {
           .insert([journal])
       )
   }
+
+  function makeAuthHeader(user) {
+    const token = Buffer.from(`${user.username}:${user.password}`).toString('base64')
+    return `Basic ${token}`
+  }
   
   module.exports = {
     makeUsersArray,
@@ -155,4 +160,5 @@ function makeUsersArray() {
     cleanTables,
     seedJournalsTables,
     seedMaliciousJournal,
+    makeAuthHeader
   }
