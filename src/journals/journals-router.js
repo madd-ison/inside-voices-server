@@ -2,6 +2,8 @@ const express = require('express')
 const xss = require('xss')
 const logger = require('../logger')
 const JournalsService = require('./journals-service')
+const {requireAuth} = require('../middleware/basic-auth')
+const {getAllJournals} = require('./journals-service')
 
 const journalsRouter = express.Router()
 const bodyParser = express.json()
@@ -15,7 +17,7 @@ const serializeJournal = journal => ({
 
 journalsRouter
     .route('/')
-    // .all(requireAuth)
+    .all(requireAuth)
     .get((req, res, next) => {
     const knexInstance = req.app.get('db')
     JournalsService.getAllJournals(knexInstance)
@@ -34,7 +36,6 @@ journalsRouter
       }
       JournalsService.addJournal(req.app.get('db'), newJournal)
         .then(journal => {
-          console.log(journal)
           logger.info(`journal with id ${journal.id} created`)
           res
             .status(201)
@@ -46,7 +47,7 @@ journalsRouter
 
     journalsRouter
       .route('/:id')
-      .all((req, res, next) => {
+      .all(requireAuth, (req, res, next) => {
         const {id} = req.params
         JournalsService.getJournalById(req.app.get('db'), id)
           .then(journal => {
