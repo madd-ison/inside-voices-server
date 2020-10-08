@@ -44,3 +44,28 @@
 {"message":"journal 14 deleted","level":"info"}
 {"message":"journal 12 deleted","level":"info"}
 {"message":"journal with id 15 created","level":"info"}
+{"message":"Journal 1 not found","level":"error"}
+{"message":"journal 15 deleted","level":"info"}
+{"message":"journal with id 16 created","level":"info"}
+{"message":"journal 16 deleted","level":"info"}
+{"message":"journal with id 17 created","level":"info"}
+{"message":"Journal 1 not found","level":"error"}
+{"message":"journal 17 deleted","level":"info"}
+{"message":"journal with id 18 created","level":"info"}
+{"message":"journal with id 19 created","level":"info"}
+{"message":"journal 19 deleted","level":"info"}
+{"message":"journal 18 deleted","level":"info"}
+{"message":"journal with id 20 created","level":"info"}
+{"message":"journal 20 deleted","level":"info"}
+{"message":"journal with id 21 created","level":"info"}
+{"message":"journal 21 deleted","level":"info"}
+{"message":"journal with id 22 created","level":"info"}
+{"message":"Journal 1 not found","level":"error"}
+{"message":"Journal 1 not found","level":"error"}
+{"message":"Journal 1 not found","level":"error"}
+{"message":"journal with id 23 created","level":"info"}
+{"message":"Journal 1 not found","level":"error"}
+{"message":"Journal 1 not found","level":"error"}
+{"message":"journal with id 24 created","level":"info"}
+{"message":"Journal 1 not found","level":"error"}
+{"message":"Journal 1 not found","level":"error"}
