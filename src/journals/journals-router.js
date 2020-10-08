@@ -24,7 +24,7 @@ journalsRouter
       .then(journals => res.json(journals.map(serializeJournal)))
       .catch(next)
   })
-    .post(bodyParser, (req, res, next) => {
+    .post(requireAuth, bodyParser, (req, res, next) => {
       for (const field of ['content']) {
         if (!req.body[field]) {
           logger.error(`${field} is missing`)
@@ -34,6 +34,7 @@ journalsRouter
       const newJournal = {
         content: xss(req.body.content)
       }
+      newJournal.author_id = req.user.id
       JournalsService.addJournal(req.app.get('db'), newJournal)
         .then(journal => {
           logger.info(`journal with id ${journal.id} created`)
@@ -66,7 +67,7 @@ journalsRouter
         const journal = res.journal
         res.json(serializeJournal(journal))
       })
-      .delete((req, res, next) => {
+      .delete(requireAuth, (req, res, next) => {
         const {id} = req.params
         JournalsService.deleteJournal(req.app.get('db'), id)
         .then(() => {

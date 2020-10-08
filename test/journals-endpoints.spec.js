@@ -114,9 +114,58 @@ describe.only('Journals endpoints', function() {
               .expect(200, expectedJournals)
           })
         })
-    
+    })
+    describe.only(`POST /api/journal`, () => {
+      it(`creates a new post, responding with 201 and new post`, function() {
+        this.retries(3)
+        const testJournal = testJournals[0]
+        const testUser = testUsers[0]
+        const newPost = {
+          id: testJournal.id,
+          content: 'test content'
+        }
+        return supertest(app)
+          .post('/api/journal')
+          .set('Authorization', helpers.makeAuthHeader(testUsers[0]))
+          .send(newPost)
+          .expect(201)
+          .expect(res => {
+            expect(res.body.content).to.eql(newPost.content)
+            expect(res.body.id).to.eql(newPost.id)
+            expect(res.body.user.id).to.eql(testUser.id)
+          })
+          .expect(res => {
+            db  
+              .from('journals')
+              .select('*')
+              .where({id: res.body.id})
+              .first()
+              .then(row => {
+                expect(row.content).to.eql(newPost.content)
+                expect(row.author_id).to.eql(testUser.id)
+              })
+          })
+      })
+    const requiredFields = ['content']
+
+    requiredFields.forEach(field => {
+      const testJournal = testJournals[0]
+      const newPost = {
+        content: 'Test new post',
+        id: testJournal.id
+        }
+        it(`responds with 400 and an error message when the '${field}' is missing`, () => {
+          delete newPost[field]
+  
+          return supertest(app)
+            .post('/api/journal')
+            .set('Authorization', helpers.makeAuthHeader(testUsers[0]))
+            .send(newPost)
+            .expect(400, {
+              error: `Missing '${field}' in request body`,
+            })
+        })
+      })
     })
 
 })
-
-

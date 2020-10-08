@@ -1,8 +1,10 @@
-const xss = require('xss')
-
 const JournalsService = {
     getAllJournals(knex) {
-        return knex.select('*').from('journals')
+        // return knex('journals')
+        // .join('users', 'users.id', '=', 'journals.author_id')
+        // .select('*')
+        return knex
+        .select('*').from('journals')
     },
     addJournal(knex, newJournal) {
         return knex
@@ -17,7 +19,7 @@ const JournalsService = {
     deleteJournal(knex, id) {
         return knex
         .from('journals')
-        .where({id})
+        .where('id', id)
         .delete()
     },
     updateJournal(knex, id, content) {

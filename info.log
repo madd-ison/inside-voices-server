@@ -22,3 +22,25 @@
 {"message":"journal with id 6 created","level":"info"}
 {"message":"journal 5 deleted","level":"info"}
 {"message":"journal with id 7 created","level":"info"}
+{"message":"journal with id 8 created","level":"info"}
+{"message":"journal with id 9 created","level":"info"}
+{"message":"journal 9 deleted","level":"info"}
+{"message":"journal 8 deleted","level":"info"}
+{"message":"journal with id 10 created","level":"info"}
+{"message":"journal 10 deleted","level":"info"}
+{"message":"journal with id 11 created","level":"info"}
+{"message":"journal 11 deleted","level":"info"}
+{"message":"journal with id 12 created","level":"info"}
+{"message":"journal with id 13 created","level":"info"}
+{"message":"journal 1 deleted","level":"info"}
+{"message":"Journal 1 not found","level":"error"}
+{"message":"journal 13 deleted","level":"info"}
+{"message":"journal with id 14 created","level":"info"}
+{"message":"Journal 1 not found","level":"error"}
+{"message":"Journal 1 not found","level":"error"}
+{"message":"Journal 1 not found","level":"error"}
+{"message":"Journal 1 not found","level":"error"}
+{"message":"journal 7 deleted","level":"info"}
+{"message":"journal 14 deleted","level":"info"}
+{"message":"journal 12 deleted","level":"info"}
+{"message":"journal with id 15 created","level":"info"}
