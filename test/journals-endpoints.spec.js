@@ -4,7 +4,7 @@ const app = require('../src/app')
 const helpers = require('../test/test-helpers')
 const supertest = require('supertest')
 
-describe.only('Journals endpoints', function() {
+describe('Journals endpoints', function() {
     let db
     let {testUsers, testJournals} = helpers.makeJournalsFixtures()
 
@@ -115,7 +115,7 @@ describe.only('Journals endpoints', function() {
           })
         })
     })
-    describe.only(`POST /api/journal`, () => {
+    describe(`POST /api/journal`, () => {
       it(`creates a new post, responding with 201 and new post`, function() {
         this.retries(3)
         const testJournal = testJournals[0]

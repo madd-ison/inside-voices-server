@@ -3,7 +3,6 @@ const xss = require('xss')
 const logger = require('../logger')
 const JournalsService = require('./journals-service')
 const {requireAuth} = require('../middleware/basic-auth')
-const {getAllJournals} = require('./journals-service')
 
 const journalsRouter = express.Router()
 const bodyParser = express.json()
@@ -20,7 +19,7 @@ journalsRouter
     .all(requireAuth)
     .get((req, res, next) => {
     const knexInstance = req.app.get('db')
-    JournalsService.getAllJournals(knexInstance)
+    JournalsService.getAllJournals(knexInstance, req.user.id)
       .then(journals => res.json(journals.map(serializeJournal)))
       .catch(next)
   })

@@ -1,10 +1,10 @@
 const JournalsService = {
-    getAllJournals(knex) {
-        return knex('journals')
-        .join('users', 'users.id', '=', 'journals.author_id')
-        .select('*')
+    getAllJournals(knex, id) {
         // return knex
-        // .select('*').from('journals')
+        // .join('users', 'users.id', 'journals.author_id')
+        // .select('*')
+        return knex
+        .select('*').from('journals').where('author_id', id)
     },
     addJournal(knex, newJournal) {
         return knex

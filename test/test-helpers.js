@@ -1,32 +1,26 @@
+const bcrypt = require('bcryptjs')
+
 function makeUsersArray() {
     return [
       {
         id: 1,
         username: 'test-user-1',
-        full_name: 'Test user 1',
-        nickname: 'TU1',
-        password: 'password',
+        password: bcrypt.hash('password', 12),
       },
       {
         id: 2,
         username: 'test-user-2',
-        full_name: 'Test user 2',
-        nickname: 'TU2',
-        password: 'password',
+        password: bcrypt.hash('password', 12),
       },
       {
         id: 3,
         username: 'test-user-3',
-        full_name: 'Test user 3',
-        nickname: 'TU3',
-        password: 'password',
+        password: bcrypt.hash('password', 12),
       },
       {
         id: 4,
         username: 'test-user-4',
-        full_name: 'Test user 4',
-        nickname: 'TU4',
-        password: 'password',
+        password: bcrypt.hash('password', 12),
       },
     ]
   }
@@ -115,11 +109,26 @@ function makeUsersArray() {
       )
     )
   }
+
+  // function seedUsers(db, users) {
+  //    const preppedUsers = users.map(user => ({
+  //      ...user,
+  //      password: bcrypt.hashSync(user.password, 1)
+  //    }))
+  //    return db.into('users').insert(preppedUsers)
+  //      .then(() =>
+  //        // update the auto sequence to stay in sync
+  //        db.raw(
+  //          `SELECT setval('users_id_seq', ?)`,
+  //          [users[users.length - 1].id],
+  //        )
+  //      )
+  //  }
   
   function seedJournalsTables(db, users, journals) {
     // use a transaction to group the queries and auto rollback on any failure
     return db.transaction(async trx => {
-      await trx.into('users').insert(users)
+      await seedUsers(trx, users)
       await trx.into('journals').insert(journals)
       // update the auto sequence to match the forced id values
       await Promise.all([
@@ -136,9 +145,7 @@ function makeUsersArray() {
   }
   
   function seedMaliciousJournal(db, user, journal) {
-    return db
-      .into('users')
-      .insert([user])
+      return seedUsers(db, [user])
       .then(() =>
         db
           .into('journals')
@@ -160,5 +167,6 @@ function makeUsersArray() {
     cleanTables,
     seedJournalsTables,
     seedMaliciousJournal,
-    makeAuthHeader
+    makeAuthHeader,
+    // seedUsers
   }
