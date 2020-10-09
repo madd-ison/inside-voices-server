@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 const app = require('../src/app')
 const helpers = require('./test-helpers')
 
-describe.only('Auth Endpoints', function() {
+describe('Auth Endpoints', function() {
   let db
 
   const { testUsers } = helpers.makeJournalsFixtures()
@@ -77,6 +77,7 @@ describe.only('Auth Endpoints', function() {
                  algorithm: 'HS256',
                }
              )
+             console.log(userValidCreds)
              return supertest(app)
                .post('/api/auth/login')
                .send(userValidCreds)

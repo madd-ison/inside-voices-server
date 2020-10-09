@@ -33,7 +33,7 @@ authRouter
                res.send({
                  authToken: AuthService.createJwt(sub, payload),
                })
-         })
+            })
         })
         .catch(next)
   })
