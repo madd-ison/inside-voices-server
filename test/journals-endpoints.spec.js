@@ -45,7 +45,12 @@ describe('Journals endpoints', function() {
         {
           name: 'GET /api/journal/:id',
           path: '/api/journal/1'
-        }
+        },
+        {
+          name: 'POST /api/auth/refresh',
+          path: '/api/auth/refresh',
+          method: supertest(app).post,
+        },
       ]
       protectedEndpoints.forEach(endpoint => {
       describe(endpoint.name, () => {

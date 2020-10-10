@@ -5,7 +5,7 @@ function makeUsersArray() {
     return [
       {
         id: 1,
-        username: 'test-user-1',
+        username: 'username',
         password: bcrypt.hash('password', 12),
       },
       {
