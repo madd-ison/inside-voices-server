@@ -1,26 +1,26 @@
-# Express Boilerplate!
+# INSIDE VOICES
+* A full stack React app with authentication, Inside Voices was designed to serve as a mental health hub for people living in New York City, primarily those who choose not to interact with social media apps and therefore do not have easy access to the abundance of resources circulated within them. 
 
-This is a boilerplate project used for starting new projects!
+* Includes a journal app to track daily thoughts and growth, guided and instrumental meditations, and a colossal list of local organizations that provide food, healthcare, housing, and other services to those who truly need them. I plan to continuously expand this project.
 
-## Set up
+* Stack Used: Node, PostgreSQL, Express, React, React Router, JavaScript, HTML5, CSS
 
-Complete the following steps to start a new project (NEW-PROJECT-NAME):
+## Journal Page 
+* Record moments of inspiration, reflect on daily thoughts and accomplishments, track your growth, and tell yourself what you need to hear.
 
-1. Clone this repository to your local machine `git clone BOILERPLATE-URL NEW-PROJECTS-NAME`
-2. `cd` into the cloned repository
-3. Make a fresh start of the git history for this project with `rm -rf .git && git init`
-4. Install the node dependencies `npm install`
-5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
-6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "express-boilerplate",`
+## Meditations
+* A growing and changing list of meditations to help you experience healthy moments of stillness.
 
-## Scripts
+## Resources
+* Inside Voices helps you connect with the community that wants you to experience joy. Find an ever-growing list of free food fridges, local aid funds, and low cost mental health care.
 
-Start the application `npm start`
+## Client Repo:
+* [github/maddi-ison](https://github.com/madd-ison/inside-voices-client)
 
-Start nodemon for the application `npm run dev`
+## Live App:
 
-Run the tests `npm test`
+* [INSIDE VOICES](https://inside-voices-client.vercel.app/)
 
-## Deploying
-
-When your new project is ready for deployment, add a new Heroku application with `heroku create`. This will make a new git remote called "heroku" and you can then `npm run deploy` which will push to this remote's master branch.
+### Demo Credentials:
+* username: username1
+* password: Password1!
