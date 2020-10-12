@@ -1,18 +1,195 @@
-# INSIDE VOICES
-* A full stack React app with authentication, Inside Voices was designed to serve as a mental health hub for people living in New York City, primarily those who choose not to interact with social media apps and therefore do not have easy access to the abundance of resources circulated within them. 
+# INSIDE VOICES API
 
-* Includes a journal app to track daily thoughts and growth, guided and instrumental meditations, and a colossal list of local organizations that provide food, healthcare, housing, and other services to those who truly need them. I plan to continuously expand this project.
+**Get Journal Posts**
+----
+  Returns json data for entire journal history.
 
-* Stack Used: Node, PostgreSQL, Express, React, React Router, JavaScript, HTML5, CSS
+* **URL**
 
-## Journal Page 
-* Record moments of inspiration, reflect on daily thoughts and accomplishments, track your growth, and tell yourself what you need to hear.
+  /api/journals
 
-## Meditations
-* A growing and changing list of meditations to help you experience healthy moments of stillness.
+* **Method:**
 
-## Resources
-* Inside Voices helps you connect with the community that wants you to experience joy. Find an ever-growing list of free food fridges, local aid funds, and low cost mental health care.
+  `GET`
+
+* **Data Params**
+
+  Requires Auth - User Id, Bearer Token
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ id : 1, "title" : "2020-10-12", "content": "my journal post", "author_id": 1 }`
+ 
+* **Error Response:**
+
+  * **Code:** 401 Unauthorized<br />
+    **Content:** `{ error : "Missing bearer token" }`
+
+* **Sample Call:**
+
+  ```javascript
+    var settings = {
+  "url": "/api/journal",
+
+  "method": "GET",
+
+  "headers": {
+    "Authorization": "Bearer token",
+    "Content-Type": "application/json"
+  },};
+
+```
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+  ```
+
+**Get Journal By Id**
+----
+  Returns json data for a specific journal post.
+
+* **URL**
+
+  /api/journals/:id
+
+* **Method:**
+
+  `GET`
+
+*  **URL Params**
+
+   **Required:**
+ 
+   `id=[integer]`
+
+* **Data Params**
+
+  Requires Auth - User Id, Bearer Token
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ id : 1, "title" : "2020-10-12", "content": "my journal post", "author_id": 1 }`
+ 
+* **Error Response:**
+
+  * **Code:** 401 Unauthorized<br />
+    **Content:** `{ error : "Missing bearer token" }`
+
+* **Sample Call:**
+
+  ```javascript
+    var settings = {
+  "url": "/api/journal/:id",
+
+  "method": "GET",
+
+  "headers": {
+    "Authorization": "Bearer token",
+    "Content-Type": "application/json"
+  },}; 
+  $.ajax(settings).done(function (response) {
+  console.log(response);});
+
+
+**Post A Journal Entry**
+----
+  Creates a new post with an id.
+
+* **URL**
+
+  /api/journal
+
+* **Method:**
+
+  `POST`
+
+
+* **Data Params**
+
+  - Requires Auth - User Id, Bearer Token
+  - Content - res.body
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ id : 1, "title" : "2020-10-12", "content": "my journal post", "author_id": 1 }`
+ 
+* **Error Response:**
+
+  * **Code:** 401 Unauthorized<br />
+    **Content:** `{ error : "Missing bearer token" }`
+
+* **Sample Call:**
+
+  ```javascript
+   var settings = {
+  "url": "/api/journal",
+
+  "method": "POST",
+
+  "headers": {
+    "Authorization": "Bearer token",
+    "Content-Type": "application/json"
+  },
+  "data": JSON.stringify({"content":"test"}),
+  };
+
+  $.ajax(settings).done(function (response) {
+  console.log(response);});
+
+  ```
+
+**Delete A Journal Entry**
+----
+  Deletes a journal post with a specific id.
+
+* **URL**
+
+  /api/journal/:id
+
+* **Method:**
+
+  `DELETE`
+
+*  **URL Params**
+
+   **Required:**
+ 
+   `id=[integer]`
+
+* **Data Params**
+
+  - Requires Auth - User Id, Bearer Token
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ id : 1, "title" : "2020-10-12", "content": "my journal post", "author_id": 1 }`
+ 
+* **Error Response:**
+
+  * **Code:** 401 Unauthorized<br />
+    **Content:** `{ error : "Missing bearer token" }`
+
+* **Sample Call:**
+
+  ```javascript
+   var settings = {
+  "url": "/api/journal/:id",
+
+  "method": "DELETE",
+
+  "headers": {
+    "Authorization": "Bearer token",
+    "Content-Type": "application/json"
+  },
+
+  $.ajax(settings).done(function (response) {
+  console.log(response);});
+
+  ```
 
 ## Client Repo:
 * [github/maddi-ison](https://github.com/madd-ison/inside-voices-client)
