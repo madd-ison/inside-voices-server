@@ -6,7 +6,7 @@
 
 * **URL**
 
-  /api/journals
+  /api/journal
 
 * **Method:**
 
@@ -37,13 +37,13 @@
   "headers": {
     "Authorization": "Bearer token",
     "Content-Type": "application/json"
-  },};
+    },
+  };
 
-```
-$.ajax(settings).done(function (response) {
+  $.ajax(settings).done(function (response) {
   console.log(response);
-});
-  ```
+  });
+
 
 **Get Journal By Id**
 ----
@@ -51,7 +51,7 @@ $.ajax(settings).done(function (response) {
 
 * **URL**
 
-  /api/journals/:id
+  /api/journal/:id
 
 * **Method:**
 
@@ -76,6 +76,8 @@ $.ajax(settings).done(function (response) {
 
   * **Code:** 401 Unauthorized<br />
     **Content:** `{ error : "Missing bearer token" }`
+  * **Code:** 404 Not Found<br />
+    **Content:** `{ error : "Journal not found" }`
 
 * **Sample Call:**
 
@@ -95,7 +97,7 @@ $.ajax(settings).done(function (response) {
 
 **Post A Journal Entry**
 ----
-  Creates a new post with an id.
+  Creates a new post with a new id.
 
 * **URL**
 
@@ -113,13 +115,15 @@ $.ajax(settings).done(function (response) {
 
 * **Success Response:**
 
-  * **Code:** 200 <br />
+  * **Code:** 201 <br />
     **Content:** `{ id : 1, "title" : "2020-10-12", "content": "my journal post", "author_id": 1 }`
  
 * **Error Response:**
 
   * **Code:** 401 Unauthorized<br />
     **Content:** `{ error : "Missing bearer token" }`
+  * **Code:** 400 Bad Request<br />
+    **Content:** `{ error : "Content is missing" }`
 
 * **Sample Call:**
 
@@ -172,6 +176,8 @@ $.ajax(settings).done(function (response) {
 
   * **Code:** 401 Unauthorized<br />
     **Content:** `{ error : "Missing bearer token" }`
+  * **Code:** 404<br />
+    **Content:** `{ error : "Journal not found" }`
 
 * **Sample Call:**
 
